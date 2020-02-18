@@ -10,6 +10,10 @@ Uses [nestjs](https://nestjs.com/)
 $ npm install
 ```
 
+Download google credentials JSON key and move it to:
+[google-credentials.json](./google-credentials.json)
+(In .gitignore)
+
 ## Running the app
 
 ```bash
