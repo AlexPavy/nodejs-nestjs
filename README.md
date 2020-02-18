@@ -35,3 +35,12 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Deploy
+
+With [Google cloud run](https://cloud.google.com/run/docs/quickstarts/build-and-deploy?hl=en_US)
+
+```zsh
+gcloud builds submit --tag gcr.io/<project id>/add-to-event-test
+gcloud run deploy --image gcr.io/<project id>/add-to-event-test --platform managed
+```
