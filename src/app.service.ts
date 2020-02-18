@@ -6,10 +6,3 @@ export class AppService {
     return 'Hello World!';
   }
 }
-
-const Firestore = require('@google-cloud/firestore');
-
-const db = new Firestore({
-  projectId: 'codetests',
-  keyFilename: 'google-credentials.json',
-});
