@@ -12,7 +12,7 @@ $ npm install
 
 Download google credentials JSON key and move it to:
 [google-credentials.json](./google-credentials.json)
-(In .gitignore)
+It's a secret so it's in [.gitignore](./.gitignore)
 
 ## Running the app
 

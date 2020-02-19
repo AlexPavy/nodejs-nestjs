@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { HelloCtl, FormDefinitionCtl } from './app.controller';
+import { FormDefinitionSvc } from './app.service';
+import { FirestoreSvc } from './firestore';
 
 @Module({
   imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [HelloCtl, FormDefinitionCtl],
+  providers: [FirestoreSvc, FormDefinitionSvc],
 })
 export class AppModule {}
