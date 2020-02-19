@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import {BadRequestException, Injectable} from '@nestjs/common';
 import {FirestoreSvc} from "./firestore";
 
 @Injectable()
@@ -16,6 +16,18 @@ export class FormDefinitionSvc {
   }
 
   async create(name: string, data) {
+    const snap = await this.formDefDb.doc(name).get();
+    if (snap.data()) {
+      throw new BadRequestException(`Service name ${name} already exists`);
+    }
+    return this.formDefDb.doc(name).set(data);
+  }
+
+  async update(name: string, data) {
+    const snap = await this.formDefDb.doc(name).get();
+    if (!snap.data()) {
+      throw new BadRequestException(`Service name ${name} doesn't exist`);
+    }
     return this.formDefDb.doc(name).set(data);
   }
 

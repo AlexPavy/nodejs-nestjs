@@ -1,14 +1,16 @@
-import {Controller, Get, Post, Delete, Body, UsePipes, Param} from '@nestjs/common';
-import { FormDefinitionSvc } from './app.service';
-import {FormDefValidationPipe } from './formDefinitionValidation'
+import {Controller, Get, Post, Put, Delete, Body, UsePipes, Param} from '@nestjs/common';
+import { FormDefinitionSvc } from './formDefinition.service';
+import { FormEntrySvc } from './formEntry.service';
+import { FormDefValidationPipe } from './formDefinition.pipe'
+import { FormEntryValidationPipe } from './formEntry.pipe'
 
 @Controller()
-export class HelloCtl {
+export class BaseCtl {
   constructor() {}
 
   @Get()
   getHello(): string {
-    return 'Hello World';
+    return 'Add to event test';
   }
 }
 
@@ -28,18 +30,32 @@ export class FormDefinitionCtl {
     return this.formDefSvc.create(name, body[name]);
   }
 
+  @Put()
+  @UsePipes(FormDefValidationPipe)
+  async updateFormDefinition(@Body() body) {
+    const name = Object.keys(body)[0];
+    return this.formDefSvc.update(name, body[name]);
+  }
+
   @Delete(':name')
   async deleteFormDefinition(@Param() params) {
     return this.formDefSvc.delete(params.name);
   }
 }
 
-// @Controller("form-entry")
-// export class FormEntryCtl {
-//   constructor(private readonly appService: AppService) {}
-//
-//   @Get()
-//   getHello(): string {
-//     return this.appService.getHello();
-//   }
-// }
+@Controller("form-entry")
+export class FormEntryCtl {
+  constructor(private readonly formEntrySvc: FormEntrySvc) {}
+
+  @Get(':name')
+  async getFormEntry(@Param() params) {
+    return this.formEntrySvc.get(params.name);
+  }
+
+  @Post()
+  @UsePipes(FormEntryValidationPipe)
+  async createFormEntry(@Body() body) {
+    return this.formEntrySvc.create(body.name, body);
+  }
+
+}
