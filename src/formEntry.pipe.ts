@@ -59,12 +59,12 @@ export class FormEntryValidationPipe implements PipeTransform {
             }
 
             const def = defByKey[a.questionKey];
-            if (a.value.length > def.validation.maxLength) {
+            if (!!def.validation.maxLength && (a.value.length > def.validation.maxLength)) {
                 throw new BadRequestException(
                     `Value for ${a.questionKey} cannot be longer than ${def.validation.maxLength}`);
             }
 
-            if (!new RegExp(def.validation.pattern).test(a.value)) {
+            if (!!def.validation.pattern && !new RegExp(def.validation.pattern).test(a.value)) {
                 throw new BadRequestException(def.validation.validationMessage);
             }
 

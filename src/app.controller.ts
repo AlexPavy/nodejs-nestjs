@@ -9,8 +9,10 @@ export class BaseCtl {
   constructor() {}
 
   @Get()
-  getHello(): string {
-    return 'Add to event test';
+  getDefault() {
+    return {
+      'message': 'Add to event test'
+    };
   }
 }
 

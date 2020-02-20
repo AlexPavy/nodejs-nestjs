@@ -1,0 +1,13 @@
+{
+  "key": "s1",
+  "name": "Submission 1",
+  "date": 1582157673434,
+  "dateCreated": 1582157673433,
+  "serviceKey": "dancer",
+  "questions": [
+    {
+      "questionKey": "style",
+      "value": "tango"
+    }
+  ]
+}

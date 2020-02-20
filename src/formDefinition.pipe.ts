@@ -28,8 +28,9 @@ const FORM_DEFINITION_SCHEMA = Joi.object().min(1).max(1).pattern(
                 ).min(2).required()
             }),
             validation: Joi.object({
-                required: Joi.boolean().required(),
-                maxLength: Joi.number().min(1).required(),
+                required: Joi.boolean(),
+                maxLength: Joi.number().min(1),
+                minDate: Joi.string(),
                 pattern: Joi.string(), // should add a step to check that it's a valid RegExp
                 validationMessage: Joi.string(),
             }).required()

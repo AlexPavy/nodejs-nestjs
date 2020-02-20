@@ -1,0 +1,20 @@
+{
+  "dancer": [{
+    "key": "style",
+    "type": "radios",
+    "title": "Dance style",
+    "placeholder": "What type of dance",
+    "options": [
+      {
+        "name" : "Salsa",
+        "value" : "salsa"
+      }, {
+        "name" : "Tango",
+        "value" : "tango"
+      }
+    ],
+    "validation": {
+      "required": true
+    }
+  }]
+}
