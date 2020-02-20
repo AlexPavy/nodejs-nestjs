@@ -2,6 +2,8 @@
 
 [Task description](./Nest.JS%20Test%20Project.pdf)
 
+App running at https://add-to-event-test-di4fnzjk5q-ew.a.run.app
+
 Uses [nestjs](https://nestjs.com/)
 
 ## Installation
@@ -10,6 +12,7 @@ Uses [nestjs](https://nestjs.com/)
 $ npm install
 ```
 
+For firebase:
 Download google credentials JSON key and move it to:
 [google-credentials.json](./google-credentials.json)
 It's a secret so it's in [.gitignore](./.gitignore)
@@ -23,14 +26,7 @@ npm run start
 ## Test
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run test
 ```
 
 ## Deploy
