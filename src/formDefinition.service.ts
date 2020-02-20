@@ -15,20 +15,20 @@ export class FormDefinitionSvc {
      return snap.data();
   }
 
-  async create(name: string, data) {
-    const snap = await this.formDefDb.doc(name).get();
+  async create(serviceKey: string, data) {
+    const snap = await this.formDefDb.doc(serviceKey).get();
     if (snap.data()) {
-      throw new BadRequestException(`Service name ${name} already exists`);
+      throw new BadRequestException(`Service key ${serviceKey} already exists`);
     }
-    return this.formDefDb.doc(name).set(data);
+    return this.formDefDb.doc(serviceKey).set(data);
   }
 
-  async update(name: string, data) {
-    const snap = await this.formDefDb.doc(name).get();
+  async update(serviceKey: string, data) {
+    const snap = await this.formDefDb.doc(serviceKey).get();
     if (!snap.data()) {
-      throw new BadRequestException(`Service name ${name} doesn't exist`);
+      throw new BadRequestException(`Service name ${serviceKey} doesn't exist`);
     }
-    return this.formDefDb.doc(name).set(data);
+    return this.formDefDb.doc(serviceKey).set(data);
   }
 
   async delete(name: string) {

@@ -34,7 +34,7 @@ const FORM_DEFINITION_SCHEMA = Joi.object().min(1).max(1).pattern(
                 validationMessage: Joi.string(),
             }).required()
         })
-    ).required()
+    ).min(1).required()
 );
 
 @Injectable()

@@ -15,12 +15,12 @@ export class FormEntrySvc {
      return snap.data();
   }
 
-  async create(name: string, data) {
-    const snap = await this.formEntryDb.doc(name).get();
+  async create(key: string, data) {
+    const snap = await this.formEntryDb.doc(key).get();
     if (snap.data()) {
-      throw new BadRequestException(`Entry with name ${name} already exists`);
+      throw new BadRequestException(`Entry with key ${key} already exists`);
     }
-    return this.formEntryDb.doc(name).set(data);
+    return this.formEntryDb.doc(key).set(data);
   }
 
 }

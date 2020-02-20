@@ -18,28 +18,28 @@ export class BaseCtl {
 export class FormDefinitionCtl {
   constructor(private readonly formDefSvc: FormDefinitionSvc) {}
 
-  @Get(':name')
+  @Get(':serviceKey')
   async getFormDefinition(@Param() params) {
-    return this.formDefSvc.get(params.name);
+    return this.formDefSvc.get(params.serviceKey);
   }
 
   @Post()
   @UsePipes(FormDefValidationPipe)
   async createFormDefinition(@Body() body) {
-    const name = Object.keys(body)[0];
-    return this.formDefSvc.create(name, body[name]);
+    const serviceKey = Object.keys(body)[0];
+    return this.formDefSvc.create(serviceKey, body);
   }
 
   @Put()
   @UsePipes(FormDefValidationPipe)
   async updateFormDefinition(@Body() body) {
-    const name = Object.keys(body)[0];
-    return this.formDefSvc.update(name, body[name]);
+    const serviceKey = Object.keys(body)[0];
+    return this.formDefSvc.update(serviceKey, body);
   }
 
-  @Delete(':name')
+  @Delete(':serviceKey')
   async deleteFormDefinition(@Param() params) {
-    return this.formDefSvc.delete(params.name);
+    return this.formDefSvc.delete(params.serviceKey);
   }
 }
 
@@ -47,15 +47,15 @@ export class FormDefinitionCtl {
 export class FormEntryCtl {
   constructor(private readonly formEntrySvc: FormEntrySvc) {}
 
-  @Get(':name')
+  @Get(':key')
   async getFormEntry(@Param() params) {
-    return this.formEntrySvc.get(params.name);
+    return this.formEntrySvc.get(params.key);
   }
 
   @Post()
   @UsePipes(FormEntryValidationPipe)
   async createFormEntry(@Body() body) {
-    return this.formEntrySvc.create(body.name, body);
+    return this.formEntrySvc.create(body.key, body);
   }
 
 }

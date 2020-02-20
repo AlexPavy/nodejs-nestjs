@@ -23,7 +23,7 @@ const FORM_ENTRY_SCHEMA = Joi.object({
             questionKey: Joi.string().required(),
             value: Joi.string().required(), // I put string to simplify
         })
-    ).min(2).required(),
+    ).required(),
 });
 
 @Injectable()
@@ -48,14 +48,10 @@ export class FormEntryValidationPipe implements PipeTransform {
     }
 
     /**
-     * Validate based on form definition
+     * Validate based on form definition.
      */
     validateQuestions(questions, formDef) {
-        const defByKey = {};
-        for (let q of formDef) {
-            defByKey[q.key] = q
-        }
-
+        const defByKey = this.getFormDefByKey(formDef);
         for (let a of questions) {
             if (!defByKey[a.questionKey]) {
                 throw new BadRequestException(
@@ -83,6 +79,18 @@ export class FormEntryValidationPipe implements PipeTransform {
                     `A response for ${k}:${defByKey[k].title} is required`);
             }
         }
+    }
+
+    /**
+     * Simplify query question by questionKey
+     */
+    getFormDefByKey(formDef) {
+        const name = Object.keys(formDef)[0];
+        const defByKey = {};
+        for (let q of formDef[name]) {
+            defByKey[q.key] = q
+        }
+        return defByKey;
     }
 
 }
