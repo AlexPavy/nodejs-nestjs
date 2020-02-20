@@ -30,13 +30,13 @@ const FORM_ENTRY_SCHEMA = Joi.object({
 export class FormEntryValidationPipe implements PipeTransform {
     constructor(private readonly formDefSvc: FormDefinitionSvc) {}
 
-    transform(value: any, metadata: ArgumentMetadata) {
+    async transform(value: any, metadata: ArgumentMetadata) {
         const result = FORM_ENTRY_SCHEMA.validate(value);
         if (result.error) {
             throw new BadRequestException(result.error.stack);
         }
 
-        const formDef = this.formDefSvc.get(value.serviceKey);
+        const formDef = await this.formDefSvc.get(value.serviceKey);
         if (!formDef) {
             throw new BadRequestException(
                 `There is no definition of service with serviceKey ${value.serviceKey}`);
