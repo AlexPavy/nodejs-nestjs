@@ -1,12 +1,13 @@
-/*
- * Validation of form definitions (= questions)
- */
 import {
     PipeTransform,
     Injectable,
     ArgumentMetadata,
     BadRequestException
 } from '@nestjs/common';
+
+/*
+ * Validation of form definitions (= questions)
+ */
 
 const Joi = require('@hapi/joi');
 
@@ -30,7 +31,7 @@ const FORM_DEFINITION_SCHEMA = Joi.object().min(1).max(1).pattern(
             validation: Joi.object({
                 required: Joi.boolean(),
                 maxLength: Joi.number().min(1),
-                minDate: Joi.string(),
+                minDate: Joi.string(), // not checked (missing)
                 pattern: Joi.string(), // should add a step to check that it's a valid RegExp
                 validationMessage: Joi.string(),
             })

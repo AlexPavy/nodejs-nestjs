@@ -4,6 +4,10 @@ import { FormEntrySvc } from './formEntry.service';
 import { FormDefValidationPipe } from './formDefinition.pipe'
 import { FormEntryValidationPipe } from './formEntry.pipe'
 
+/*
+  Single controller file for all routes
+ */
+
 @Controller()
 export class BaseCtl {
   constructor() {}

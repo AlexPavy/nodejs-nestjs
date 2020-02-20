@@ -16,6 +16,7 @@ export class FormEntrySvc {
   }
 
   async create(key: string, data) {
+    // should be change to thread-safe
     const snap = await this.formEntryDb.doc(key).get();
     if (snap.data()) {
       throw new BadRequestException(`Entry with key ${key} already exists`);

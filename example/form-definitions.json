@@ -40,7 +40,8 @@
     "type" : "string",
     "validation" : {
       "pattern" : "^\\S+@\\S+$",
-      "required" : true
+      "required" : true,
+      "validationMessage": "Invalid email"
     }
   }, {
     "key" : "date",
@@ -109,7 +110,8 @@
     "type" : "string",
     "validation" : {
       "pattern" : "^\\S+@\\S+$",
-      "required" : true
+      "required" : true,
+      "validationMessage": "Invalid email"
     }
   }, {
     "key" : "date",

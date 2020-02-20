@@ -1,6 +1,11 @@
 import {BadRequestException, Injectable} from '@nestjs/common';
 import {FirestoreSvc} from "./firestore";
 
+/*
+  Wrapper to firestore for form definition.
+  Checks for duplicates. (This check could go in a pipe)
+ */
+
 @Injectable()
 export class FormDefinitionSvc {
 
@@ -16,6 +21,7 @@ export class FormDefinitionSvc {
   }
 
   async create(serviceKey: string, data) {
+    // should be change to thread-safe
     const snap = await this.formDefDb.doc(serviceKey).get();
     if (snap.data()) {
       throw new BadRequestException(`Service key ${serviceKey} already exists`);
@@ -24,6 +30,7 @@ export class FormDefinitionSvc {
   }
 
   async update(serviceKey: string, data) {
+    // should be change to thread-safe
     const snap = await this.formDefDb.doc(serviceKey).get();
     if (!snap.data()) {
       throw new BadRequestException(`Service name ${serviceKey} doesn't exist`);

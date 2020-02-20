@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
 import { FormDefinitionCtl } from './app.controller';
 import { FormDefinitionSvc } from './formDefinition.service';
 import { FirestoreSvc } from './firestore';
@@ -11,7 +10,6 @@ import { FirestoreInMemorySvc } from './firestore_in_memory';
  */
 
 describe('controller test', () => {
-  let app: INestApplication;
   let formDefinitionCtl: FormDefinitionCtl;
   let firestoreSvc = new FirestoreInMemorySvc();
 

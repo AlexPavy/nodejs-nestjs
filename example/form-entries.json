@@ -33,6 +33,44 @@
         }
       ]
     }
-
+  },
+  "hottub": {
+    "entry1": {
+      "key": "hottub_entry1",
+      "name": "Hottub entry 1",
+      "date": 1582157673437,
+      "dateCreated": 1582157673436,
+      "serviceKey": "hottub",
+      "questions": [
+        {
+          "questionKey": "hottubtype",
+          "value": "solid"
+        },
+        {
+          "questionKey": "type",
+          "value": "wedding"
+        },
+        {
+          "questionKey": "body",
+          "value": "Relaxing hot tub for weddings"
+        },
+        {
+          "questionKey": "name",
+          "value": "Hot tub"
+        },
+        {
+          "questionKey": "email",
+          "value": "hottub@googlemail.com"
+        },
+        {
+          "questionKey": "date",
+          "value": "2020-01-21"
+        },
+        {
+          "questionKey" : "submit",
+          "value" : "true"
+        }
+      ]
+    }
   }
 }

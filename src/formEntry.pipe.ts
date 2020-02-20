@@ -75,8 +75,9 @@ export class FormEntryValidationPipe implements PipeTransform {
         // check missing required questions
         for (let k in defByKey) {
             if (defByKey[k].validation.required) {
+                let title = defByKey[k].title || "";
                 throw new BadRequestException(
-                    `A response for ${k}:${defByKey[k].title} is required`);
+                    `A response for ${k}:${title} is required`);
             }
         }
     }

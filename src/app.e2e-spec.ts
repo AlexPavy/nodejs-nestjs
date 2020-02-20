@@ -5,6 +5,10 @@ import { AppModule } from './app.module';
 import {FirestoreSvc} from "./firestore";
 import {FirestoreInMemorySvc} from "./firestore_in_memory";
 
+/*
+  Tests the whole integration
+ */
+
 const formDefs = require('../example/form-definitions.json');
 const entries = require('../example/form-entries.json');
 
@@ -42,7 +46,7 @@ describe('AppController (e2e)', () => {
           .expect(200, {"magician": formDefs["magician"]});
     });
 
-    it('Checks invalid form definition', async () => {
+    it('Checks create invalid form definition', async () => {
       await request(app.getHttpServer())
           .post('/form-definition')
           .send({"magician": {}})
@@ -51,6 +55,38 @@ describe('AppController (e2e)', () => {
             error: 'Bad Request',
             message: 'ValidationError: "magician" must be an array'
           });
+    });
+
+    it('Can update and get a valid form definition', async () => {
+      await request(app.getHttpServer())
+        .post('/form-definition')
+        .send({"magician": formDefs["magician"]});
+
+      const updated = JSON.parse(JSON.stringify(formDefs["magician"]));
+      updated[0].key = "typeofmagic";
+      await request(app.getHttpServer())
+        .put('/form-definition')
+        .send({"magician": updated})
+        .expect(200);
+
+      return request(app.getHttpServer())
+        .get('/form-definition/magician')
+        .expect(200, {"magician": updated});
+    });
+
+    it('Checks update invalid form definition', async () => {
+      await request(app.getHttpServer())
+        .post('/form-definition')
+        .send({"magician": formDefs["magician"]});
+
+      await request(app.getHttpServer())
+        .put('/form-definition')
+        .send({"magician": {}})
+        .expect(400, {
+          statusCode: 400,
+          error: 'Bad Request',
+          message: 'ValidationError: "magician" must be an array'
+        });
     });
   });
 
