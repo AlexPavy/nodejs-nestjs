@@ -4,7 +4,9 @@
 
 App running at https://add-to-event-test-di4fnzjk5q-ew.a.run.app
 
-Uses [nestjs](https://nestjs.com/)
+Uses:
+- [nestjs](https://nestjs.com/)
+- [google firestore](https://cloud.google.com/firestore)
 
 ## Installation
 
@@ -12,7 +14,7 @@ Uses [nestjs](https://nestjs.com/)
 $ npm install
 ```
 
-For firebase:
+For firestore:
 Download google credentials JSON key and move it to:
 [google-credentials.json](./google-credentials.json)
 It's a secret so it's in [.gitignore](./.gitignore)
