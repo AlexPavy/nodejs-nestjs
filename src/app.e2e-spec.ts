@@ -14,9 +14,10 @@ const entries = require('../example/form-entries.json');
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
-  let firestoreSvc = new FirestoreInMemorySvc();
+  let firestoreSvc: FirestoreInMemorySvc;
 
   beforeEach(async () => {
+    firestoreSvc = new FirestoreInMemorySvc();
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).overrideProvider(FirestoreSvc)

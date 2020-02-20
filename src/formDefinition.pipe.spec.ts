@@ -1,4 +1,3 @@
-import { FirestoreInMemorySvc } from './firestore_in_memory';
 import { FormDefValidationPipe } from './formDefinition.pipe'
 
 /*
@@ -9,7 +8,6 @@ const formDefs = require('../example/form-definitions.json');
 
 describe('formDefinition validation pipe test', () => {
   let formDefPipe: FormDefValidationPipe;
-  let firestoreSvc = new FirestoreInMemorySvc();
 
   beforeEach(async () => {
     formDefPipe = new FormDefValidationPipe()

@@ -8,13 +8,12 @@ import {AppModule} from "./app.module";
   Test service for form definitions
  */
 
-const formDefs = require('../example/form-definitions.json');
-
 describe('formDefinition service test', () => {
   let formDefSvc: FormDefinitionSvc;
-  let firestoreSvc = new FirestoreInMemorySvc();
+  let firestoreSvc: FirestoreInMemorySvc;
 
   beforeEach(async () => {
+    firestoreSvc = new FirestoreInMemorySvc();
     const app: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).overrideProvider(FirestoreSvc)

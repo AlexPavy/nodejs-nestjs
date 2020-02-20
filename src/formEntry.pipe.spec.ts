@@ -15,9 +15,10 @@ const entries = require('../example/form-entries.json');
 describe('formEntry validation pipe test', () => {
   let formDefSvc: FormDefinitionSvc;
   let formEntryPipe: FormEntryValidationPipe;
-  let firestoreSvc = new FirestoreInMemorySvc();
+  let firestoreSvc: FirestoreInMemorySvc;
 
   beforeEach(async () => {
+    firestoreSvc = new FirestoreInMemorySvc();
     const app: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).overrideProvider(FirestoreSvc)

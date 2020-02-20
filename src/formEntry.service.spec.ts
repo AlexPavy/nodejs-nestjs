@@ -10,9 +10,10 @@ import {AppModule} from "./app.module";
 
 describe('formEntry service test', () => {
   let formEntrySvc: FormEntrySvc;
-  let firestoreSvc = new FirestoreInMemorySvc();
+  let firestoreSvc: FirestoreInMemorySvc;
 
   beforeEach(async () => {
+    firestoreSvc = new FirestoreInMemorySvc();
     const app: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).overrideProvider(FirestoreSvc)
