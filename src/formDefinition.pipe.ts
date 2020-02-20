@@ -16,8 +16,8 @@ const FORM_DEFINITION_SCHEMA = Joi.object().min(1).max(1).pattern(
         Joi.object({
             key: Joi.string().required(),
             type: Joi.valid("string", "textarea", "radios", "submit", "date").required(),
-            title: Joi.string().required(),
-            placeholder: Joi.string().required(),
+            title: Joi.string(),
+            placeholder: Joi.string(),
             options: Joi.array().when("type", {
                 is: "radios",
                 then: Joi.array().items(
@@ -33,7 +33,7 @@ const FORM_DEFINITION_SCHEMA = Joi.object().min(1).max(1).pattern(
                 minDate: Joi.string(),
                 pattern: Joi.string(), // should add a step to check that it's a valid RegExp
                 validationMessage: Joi.string(),
-            }).required()
+            })
         })
     ).min(1).required()
 );

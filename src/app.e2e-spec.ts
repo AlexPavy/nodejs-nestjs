@@ -5,7 +5,8 @@ import { AppModule } from './app.module';
 import {FirestoreSvc} from "./firestore";
 import {FirestoreInMemorySvc} from "./firestore_in_memory";
 
-const questions = require('../example/service-questions-export.json');
+const formDefs = require('../example/form-definitions.json');
+const entries = require('../example/form-entries.json');
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -32,11 +33,52 @@ describe('AppController (e2e)', () => {
 
   describe('Form Definition test', () => {
     it('Can create and get a valid form definition', async () => {
-      const created = await request(app.getHttpServer())
+      await request(app.getHttpServer())
           .post('/form-definition')
-          .send(questions["magician"])
-          .expect(200, {message: 'Add to event test'});
-      console.log(created)
+          .send({"magician": formDefs["magician"]})
+          .expect(201);
+      return request(app.getHttpServer())
+          .get('/form-definition/magician')
+          .expect(200, {"magician": formDefs["magician"]});
+    });
+
+    it('Checks invalid form definition', async () => {
+      await request(app.getHttpServer())
+          .post('/form-definition')
+          .send({"magician": {}})
+          .expect(400, {
+            statusCode: 400,
+            error: 'Bad Request',
+            message: 'ValidationError: "magician" must be an array'
+          });
+    });
+  });
+
+  describe('Form Entry test', () => {
+    it('Can create and get a valid form entry', async () => {
+      await request(app.getHttpServer())
+          .post('/form-definition')
+          .send({"confetti": formDefs["confetti"]})
+          .expect(201);
+
+      await request(app.getHttpServer())
+          .post('/form-entry')
+          .send(entries["confetti"]["entry1"])
+          .expect(201);
+      return request(app.getHttpServer())
+          .get('/form-entry/confetti_entry1')
+          .expect(200, entries["confetti"]["entry1"]);
+    });
+
+    it('Checks invalid form entry', async () => {
+      await request(app.getHttpServer())
+          .post('/form-entry')
+          .send(entries["confetti"]["entry1"])
+          .expect(400, {
+            statusCode: 400,
+            error: 'Bad Request',
+            message: 'There is no definition of service with serviceKey confetti'
+          });
     });
   });
 });

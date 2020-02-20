@@ -88,6 +88,7 @@ export class FormEntryValidationPipe implements PipeTransform {
         const name = Object.keys(formDef)[0];
         const defByKey = {};
         for (let q of formDef[name]) {
+            q.validation = q.validation || {}; // padding to avoid checking existence
             defByKey[q.key] = q
         }
         return defByKey;
