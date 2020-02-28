@@ -1,6 +1,4 @@
-# Add to event test
-
-[Task description](./Nest.JS%20Test%20Project.pdf)
+# Nodejs - Nestjs backend
 
 App running at https://add-to-event-test-di4fnzjk5q-ew.a.run.app
 
